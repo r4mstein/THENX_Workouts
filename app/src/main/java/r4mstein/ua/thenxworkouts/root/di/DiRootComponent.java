@@ -5,6 +5,8 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import r4mstein.ua.thenxworkouts.root.navigator.DiRootNavigatorModule;
+import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 import r4mstein.ua.thenxworkouts.root.network.INetworkManager;
 import r4mstein.ua.thenxworkouts.root.network.di.DiNetworkModule;
 
@@ -14,10 +16,12 @@ import r4mstein.ua.thenxworkouts.root.network.di.DiNetworkModule;
 @Singleton
 @Component(modules = {
         DiAppModule.class,
-        DiNetworkModule.class
+        DiNetworkModule.class,
+        DiRootNavigatorModule.class
 })
 public interface DiRootComponent {
     Context context();
+    IRootNavigator rootNavigator();
 
     INetworkManager networkManager();
 }
