@@ -1,9 +1,11 @@
-package r4mstein.ua.thenxworkouts;
+package r4mstein.ua.thenxworkouts.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import r4mstein.ua.thenxworkouts.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
