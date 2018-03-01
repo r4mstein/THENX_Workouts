@@ -2,6 +2,8 @@ package r4mstein.ua.thenxworkouts.auth.di;
 
 import dagger.Module;
 import dagger.Provides;
+import r4mstein.ua.thenxworkouts.auth.login.ILoginContract;
+import r4mstein.ua.thenxworkouts.auth.login.LoginModelImpl;
 import r4mstein.ua.thenxworkouts.auth.navigator.AuthModelImpl;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthContract;
 import r4mstein.ua.thenxworkouts.auth.register.IRegisterContract;
@@ -24,5 +26,11 @@ final class DiAuthModule {
     @AuthScope
     final IRegisterContract.Model provideRegisterModel(final IFirebaseManager _firebaseManager) {
         return new RegisterModelImpl(_firebaseManager);
+    }
+
+    @Provides
+    @AuthScope
+    final ILoginContract.Model provideLoginModel() {
+        return new LoginModelImpl();
     }
 }

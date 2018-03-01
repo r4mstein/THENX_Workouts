@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.auth.login.LoginFragment;
 import r4mstein.ua.thenxworkouts.auth.register.RegisterFragment;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
@@ -38,18 +39,24 @@ public final class AuthActivity extends BaseActivity<IAuthNavigator, IAuthContra
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.activity_auth);
         bindView(this);
-        showRegister();
+        showLogin();
     }
 
     @DebugLog
     @Override
-    public void showRegister() {
+    public final void showRegister() {
         replaceFragment(getRootContainer(), RegisterFragment.newInstance());
     }
 
     @DebugLog
     @Override
-    public void openHome() {
+    public final void showLogin() {
+        replaceFragment(getRootContainer(), LoginFragment.newInstance());
+    }
+
+    @DebugLog
+    @Override
+    public final void openHome() {
         mRootNavigator.openHome(this);
         finish();
     }

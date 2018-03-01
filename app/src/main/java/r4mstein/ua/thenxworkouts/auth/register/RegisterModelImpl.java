@@ -6,6 +6,7 @@ import com.google.firebase.auth.AuthResult;
 import javax.inject.Inject;
 
 import hugo.weaving.DebugLog;
+import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.root.base.BaseModel;
 import r4mstein.ua.thenxworkouts.root.firebase.IFirebaseManager;
 
@@ -24,7 +25,7 @@ public final class RegisterModelImpl extends BaseModel<IRegisterContract.Present
 
     @DebugLog
     @Override
-    public void register(final RegisterData _data) {
+    public void register(final AuthData _data) {
         mFirebaseManager.register(_data, mRegisterListener);
     }
 

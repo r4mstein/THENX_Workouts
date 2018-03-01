@@ -4,7 +4,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
-import r4mstein.ua.thenxworkouts.auth.register.RegisterData;
+import r4mstein.ua.thenxworkouts.auth.AuthData;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -12,6 +12,6 @@ import r4mstein.ua.thenxworkouts.auth.register.RegisterData;
 
 public interface IFirebaseManager {
     FirebaseUser getCurrentUser();
-    void register(RegisterData _data, OnCompleteListener<AuthResult> _listener);
+    void register(AuthData _data, OnCompleteListener<AuthResult> _listener);
     void logout();
 }

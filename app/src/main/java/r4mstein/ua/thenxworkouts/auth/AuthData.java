@@ -1,15 +1,15 @@
-package r4mstein.ua.thenxworkouts.auth.register;
+package r4mstein.ua.thenxworkouts.auth;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
  */
 
-public final class RegisterData {
+public final class AuthData {
 
     private String mEmail;
     private String mPass;
 
-    public RegisterData(final String _email, final String _pass) {
+    public AuthData(final String _email, final String _pass) {
         mEmail = _email;
         mPass = _pass;
     }
@@ -24,7 +24,7 @@ public final class RegisterData {
 
     @Override
     public String toString() {
-        return "RegisterData{" +
+        return "AuthData{" +
                 "Email='" + mEmail + '\'' +
                 ", Pass='" + mPass + '\'' +
                 '}';

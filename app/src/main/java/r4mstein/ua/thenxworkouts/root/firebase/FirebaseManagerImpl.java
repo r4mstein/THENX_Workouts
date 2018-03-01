@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import hugo.weaving.DebugLog;
-import r4mstein.ua.thenxworkouts.auth.register.RegisterData;
+import r4mstein.ua.thenxworkouts.auth.AuthData;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -28,7 +28,7 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
 
     @DebugLog
     @Override
-    public void register(final RegisterData _data, final OnCompleteListener<AuthResult> _listener) {
+    public void register(final AuthData _data, final OnCompleteListener<AuthResult> _listener) {
         mAuth.createUserWithEmailAndPassword(_data.getEmail(), _data.getPass()).addOnCompleteListener(_listener);
     }
 

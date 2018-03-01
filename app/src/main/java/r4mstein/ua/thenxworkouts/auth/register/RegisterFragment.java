@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthNavigator;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
 
@@ -60,20 +60,20 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @DebugLog
     @OnClick(R.id.btnRegister_AR)
     final void onClickRegister() {
-        final RegisterData data = createData();
+        final AuthData data = createData();
         if (data != null) mModel.register(data);
     }
 
     @DebugLog
     @OnClick(R.id.tvLogin_AR)
     final void onClickLogin() {
-        Toast.makeText(getContext(), "login", Toast.LENGTH_SHORT).show();
+        mNavigator.showLogin();
     }
 
     @DebugLog
-    private RegisterData createData() {
+    private AuthData createData() {
         if (checkFields(etEmail.getText().toString(), etPassword.getText().toString(), etRepeatPassword.getText().toString())) return null;
-        else return new RegisterData(etEmail.getText().toString(), etPassword.getText().toString());
+        else return new AuthData(etEmail.getText().toString(), etPassword.getText().toString());
     }
 
     @DebugLog
