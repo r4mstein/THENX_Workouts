@@ -14,6 +14,14 @@ public final class RegisterData {
         mPass = _pass;
     }
 
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public String getPass() {
+        return mPass;
+    }
+
     @Override
     public String toString() {
         return "RegisterData{" +

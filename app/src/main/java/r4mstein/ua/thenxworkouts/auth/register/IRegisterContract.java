@@ -10,10 +10,11 @@ import r4mstein.ua.thenxworkouts.root.base.IPresenter;
 public interface IRegisterContract {
 
     interface Presenter extends IPresenter {
-
+        void registered();
+        void failedRegister(Exception _e);
     }
 
     interface Model extends IModel<Presenter> {
-
+        void register(final RegisterData _data);
     }
 }

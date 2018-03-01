@@ -6,6 +6,7 @@ import r4mstein.ua.thenxworkouts.auth.navigator.AuthModelImpl;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthContract;
 import r4mstein.ua.thenxworkouts.auth.register.IRegisterContract;
 import r4mstein.ua.thenxworkouts.auth.register.RegisterModelImpl;
+import r4mstein.ua.thenxworkouts.root.firebase.IFirebaseManager;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -21,7 +22,7 @@ final class DiAuthModule {
 
     @Provides
     @AuthScope
-    final IRegisterContract.Model provideRegisterModel() {
-        return new RegisterModelImpl();
+    final IRegisterContract.Model provideRegisterModel(final IFirebaseManager _firebaseManager) {
+        return new RegisterModelImpl(_firebaseManager);
     }
 }

@@ -8,4 +8,5 @@ import r4mstein.ua.thenxworkouts.root.base.INavigator;
 
 public interface IAuthNavigator extends INavigator {
     void showRegister();
+    void openHome();
 }

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +60,8 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @DebugLog
     @OnClick(R.id.btnRegister_AR)
     final void onClickRegister() {
-        Toast.makeText(getContext(), "register", Toast.LENGTH_SHORT).show();
-        if (createData() != null) Log.d("RegisterFragment", "RegisterData not null");
+        final RegisterData data = createData();
+        if (data != null) mModel.register(data);
     }
 
     @DebugLog
@@ -80,11 +79,11 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @DebugLog
     private boolean checkFields(final String _email, final String _pass, final String _repeatPass) {
         if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_pass) || TextUtils.isEmpty(_repeatPass)) {
-            showDialog("All fields must be fill");
+            showDialog(getString(R.string.register_fields_warning_message));
             return true;
         }
         if (!_pass.equals(_repeatPass)) {
-            showDialog("Fields password and repeat password must be the same");
+            showDialog(getString(R.string.register_pass_warning_message));
             return true;
         }
         return false;
@@ -97,5 +96,17 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
                 .setMessage(_message)
                 .setPositiveButton("Ok", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @DebugLog
+    @Override
+    public void registered() {
+        mNavigator.openHome();
+    }
+
+    @DebugLog
+    @Override
+    public void failedRegister(final Exception _e) {
+        showDialog(_e.getMessage());
     }
 }
