@@ -2,6 +2,7 @@ package r4mstein.ua.thenxworkouts.auth.di;
 
 import dagger.Component;
 import r4mstein.ua.thenxworkouts.auth.navigator.AuthActivity;
+import r4mstein.ua.thenxworkouts.auth.register.RegisterFragment;
 import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
 
 /**
@@ -12,4 +13,5 @@ import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
         dependencies = DiRootComponent.class)
 public interface DiAuthComponent {
     void inject(AuthActivity _activity);
+    void inject(RegisterFragment _fragment);
 }
