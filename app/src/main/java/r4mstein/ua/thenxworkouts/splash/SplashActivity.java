@@ -57,7 +57,8 @@ public final class SplashActivity extends BaseActivity<ISplashNavigator, ISplash
     private void checkConnection() {
         if (mModel.isConnectionAvailable()) {
             mHandler.postDelayed(() -> {
-                mRootNavigator.openAuth(this);
+                if (mModel.isUserLogged())mRootNavigator.openHome(this);
+                else mRootNavigator.openAuth(this);
                 finish();
             }, 200);
         } else {

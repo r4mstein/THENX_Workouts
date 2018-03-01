@@ -2,6 +2,7 @@ package r4mstein.ua.thenxworkouts.splash.di;
 
 import dagger.Module;
 import dagger.Provides;
+import r4mstein.ua.thenxworkouts.root.firebase.IFirebaseManager;
 import r4mstein.ua.thenxworkouts.root.network.INetworkManager;
 import r4mstein.ua.thenxworkouts.splash.ISplashContract;
 import r4mstein.ua.thenxworkouts.splash.SplashModelImpl;
@@ -14,7 +15,8 @@ final class DiSplashModule {
 
     @Provides
     @SplashScope
-    final ISplashContract.Model provideSplashModel(final INetworkManager _networkManager) {
-        return new SplashModelImpl(_networkManager);
+    final ISplashContract.Model provideSplashModel(final INetworkManager _networkManager,
+                                                   final IFirebaseManager _firebaseManager) {
+        return new SplashModelImpl(_networkManager, _firebaseManager);
     }
 }

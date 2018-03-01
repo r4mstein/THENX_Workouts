@@ -8,9 +8,10 @@
     tools:context="r4mstein.ua.thenxworkouts.home.HomeActivity">
 
     <TextView
+        android:id="@+id/tvLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Logout"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

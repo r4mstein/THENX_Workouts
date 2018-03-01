@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,7 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @OnClick(R.id.btnLogin_AL)
     final void onClickLogin() {
         final AuthData authData = createData(etEmail.getText().toString(), etPassword.getText().toString());
-        if (authData != null) Log.d("Login", "authData not null");
+        if (authData != null) mModel.login(authData);
     }
 
     @DebugLog
@@ -86,5 +85,17 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @OnClick(R.id.tvRegister_AL)
     final void onClickRegister() {
         mNavigator.showRegister();
+    }
+
+    @DebugLog
+    @Override
+    public void loginSuccess() {
+        mNavigator.openHome();
+    }
+
+    @DebugLog
+    @Override
+    public void loginFailed(final Exception _e) {
+        showDialog(_e.getMessage());
     }
 }

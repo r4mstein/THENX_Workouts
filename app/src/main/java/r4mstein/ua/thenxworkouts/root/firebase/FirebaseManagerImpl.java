@@ -22,19 +22,31 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
 
     @DebugLog
     @Override
-    public FirebaseUser getCurrentUser() {
+    public final FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
     }
 
     @DebugLog
     @Override
-    public void register(final AuthData _data, final OnCompleteListener<AuthResult> _listener) {
+    public final boolean isUserLogged() {
+        return getCurrentUser() != null;
+    }
+
+    @DebugLog
+    @Override
+    public final void register(final AuthData _data, final OnCompleteListener<AuthResult> _listener) {
         mAuth.createUserWithEmailAndPassword(_data.getEmail(), _data.getPass()).addOnCompleteListener(_listener);
     }
 
     @DebugLog
     @Override
-    public void logout() {
+    public final void login(final AuthData _data, final OnCompleteListener<AuthResult> _listener) {
+        mAuth.signInWithEmailAndPassword(_data.getEmail(), _data.getPass()).addOnCompleteListener(_listener);
+    }
+
+    @DebugLog
+    @Override
+    public final void logout() {
         mAuth.signOut();
     }
 }

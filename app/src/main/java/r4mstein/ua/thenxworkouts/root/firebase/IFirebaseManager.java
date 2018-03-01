@@ -12,6 +12,8 @@ import r4mstein.ua.thenxworkouts.auth.AuthData;
 
 public interface IFirebaseManager {
     FirebaseUser getCurrentUser();
+    boolean isUserLogged();
     void register(AuthData _data, OnCompleteListener<AuthResult> _listener);
+    void login(AuthData _data, OnCompleteListener<AuthResult> _listener);
     void logout();
 }

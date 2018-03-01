@@ -30,7 +30,7 @@ final class DiAuthModule {
 
     @Provides
     @AuthScope
-    final ILoginContract.Model provideLoginModel() {
-        return new LoginModelImpl();
+    final ILoginContract.Model provideLoginModel(final IFirebaseManager _firebaseManager) {
+        return new LoginModelImpl(_firebaseManager);
     }
 }
