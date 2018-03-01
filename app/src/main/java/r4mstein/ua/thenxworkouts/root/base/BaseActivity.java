@@ -31,7 +31,7 @@ public abstract class BaseActivity<N extends INavigator, M extends IModel> exten
     }
 
     @Override
-    public void onCreate(@Nullable final Bundle _savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle _savedInstanceState) {
         super.onCreate(_savedInstanceState);
         mObjectGraph = ObjectGraph.getInstance(getApplication());
         init();

@@ -2,6 +2,8 @@ package r4mstein.ua.thenxworkouts.root;
 
 import android.content.Context;
 
+import r4mstein.ua.thenxworkouts.auth.di.DaggerDiAuthComponent;
+import r4mstein.ua.thenxworkouts.auth.di.DiAuthComponent;
 import r4mstein.ua.thenxworkouts.root.di.DaggerDiRootComponent;
 import r4mstein.ua.thenxworkouts.root.di.DiAppModule;
 import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
@@ -24,13 +26,19 @@ public final class ObjectGraph {
     }
 
     private final DiSplashComponent mSplashComponent;
+    private final DiAuthComponent mAuthComponent;
 
     private ObjectGraph(final Context _context) {
         final DiRootComponent rootComponent = DaggerDiRootComponent.builder().diAppModule(new DiAppModule(_context)).build();
         mSplashComponent = DaggerDiSplashComponent.builder().diRootComponent(rootComponent).build();
+        mAuthComponent = DaggerDiAuthComponent.builder().diRootComponent(rootComponent).build();
     }
 
     public final DiSplashComponent getSplashComponent() {
         return mSplashComponent;
+    }
+
+    public DiAuthComponent getAuthComponent() {
+        return mAuthComponent;
     }
 }
