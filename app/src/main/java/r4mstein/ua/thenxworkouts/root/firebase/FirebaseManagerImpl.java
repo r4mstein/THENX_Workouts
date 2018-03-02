@@ -1,9 +1,15 @@
 package r4mstein.ua.thenxworkouts.root.firebase;
 
+import android.net.Uri;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.auth.AuthData;
@@ -14,10 +20,14 @@ import r4mstein.ua.thenxworkouts.auth.AuthData;
 
 public final class FirebaseManagerImpl implements IFirebaseManager {
 
+    private final static long BUFFER_SIZE = 1024 * 1024 * 5;
+
     private final FirebaseAuth mAuth;
+    private final FirebaseStorage mStorage;
 
     public FirebaseManagerImpl() {
         mAuth = FirebaseAuth.getInstance();
+        mStorage = FirebaseStorage.getInstance();
     }
 
     @DebugLog
@@ -25,6 +35,8 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
     public final FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
     }
+
+    // auth region
 
     @DebugLog
     @Override
@@ -49,4 +61,33 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
     public final void logout() {
         mAuth.signOut();
     }
+    // end region
+
+    // storage region
+
+    @DebugLog
+    @Override
+    public final StorageReference getStorageReference() {
+        return mStorage.getReference();
+    }
+
+    @DebugLog
+    @Override
+    public final void loadFile(final String _url, final OnSuccessListener<byte[]> _successListener,
+                               final OnFailureListener _failureListener) {
+        final StorageReference reference = getStorageReference().child(_url);
+        reference.getBytes(BUFFER_SIZE)
+                .addOnSuccessListener(_successListener)
+                .addOnFailureListener(_failureListener);
+    }
+
+    @DebugLog
+    @Override
+    public final void getFileUrl(final String _url, final OnSuccessListener<Uri> _successListener,
+                                 final OnFailureListener _failureListener) {
+        getStorageReference().child(_url).getDownloadUrl()
+                .addOnSuccessListener(_successListener)
+                .addOnFailureListener(_failureListener);
+    }
+    // end region
 }

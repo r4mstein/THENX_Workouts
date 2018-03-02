@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".home.HomeActivity"
+        <activity android:name=".home.navigator.HomeActivity"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".auth.navigator.AuthActivity"

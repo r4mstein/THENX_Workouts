@@ -5,13 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="r4mstein.ua.thenxworkouts.home.HomeActivity">
+    tools:context="r4mstein.ua.thenxworkouts.home.navigator.HomeActivity">
 
     <TextView
         android:id="@+id/tvLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/tvLoadData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load Data"
+        android:layout_below="@id/tvLogout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
+
+    <RelativeLayout
+        android:id="@+id/rlPlayerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLoadData">
+
+        <r4mstein.ua.thenxworkouts.root.player.VideoPlayer
+            android:id="@+id/psPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+
+        <ImageView
+            android:id="@+id/ivPlayerCover"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/main_logo_"
+            android:background="@android:color/black"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>
