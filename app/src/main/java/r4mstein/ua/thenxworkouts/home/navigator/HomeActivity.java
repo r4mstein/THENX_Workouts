@@ -56,6 +56,7 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
         mModel.logout();
         mRootNavigator.openAuth(this);
         finish();
+//        mModel.loadDocument("trainingss", "BW1D2");
     }
 
     @DebugLog

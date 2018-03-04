@@ -8,6 +8,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -24,10 +27,13 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
 
     private final FirebaseAuth mAuth;
     private final FirebaseStorage mStorage;
+    private final FirebaseFirestore mFirestore;
 
     public FirebaseManagerImpl() {
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+//        FirebaseFirestore.setLoggingEnabled(true);
     }
 
     @DebugLog
@@ -89,5 +95,16 @@ public final class FirebaseManagerImpl implements IFirebaseManager {
                 .addOnSuccessListener(_successListener)
                 .addOnFailureListener(_failureListener);
     }
+    // end region
+
+    // fire store region
+    @DebugLog
+    @Override
+    public final void loadDocument(final String _collection, final String _document,
+                                   final OnCompleteListener<DocumentSnapshot> _completeListener) {
+        final DocumentReference reference = mFirestore.collection(_collection).document(_document);
+        reference.get().addOnCompleteListener(_completeListener);
+    }
+
     // end region
 }

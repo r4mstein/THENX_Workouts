@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 
 import r4mstein.ua.thenxworkouts.auth.AuthData;
@@ -24,4 +25,5 @@ public interface IFirebaseManager {
     StorageReference getStorageReference();
     void loadFile(String _url, OnSuccessListener<byte[]> _successListener, OnFailureListener _failureListener);
     void getFileUrl(String _url, OnSuccessListener<Uri> _successListener, OnFailureListener _failureListener);
+    void loadDocument(String _collection, String _document, OnCompleteListener<DocumentSnapshot> _completeListener);
 }

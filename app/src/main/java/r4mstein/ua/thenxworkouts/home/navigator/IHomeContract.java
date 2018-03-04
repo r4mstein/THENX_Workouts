@@ -19,5 +19,6 @@ public interface IHomeContract {
     interface Model extends IModel<Presenter> {
         void logout();
         void getFileUrl(final String _url);
+        void loadDocument(String _collection, String _document);
     }
 }
