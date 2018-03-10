@@ -1,7 +1,5 @@
 package r4mstein.ua.thenxworkouts.home.navigator;
 
-import android.net.Uri;
-
 import r4mstein.ua.thenxworkouts.root.base.IModel;
 import r4mstein.ua.thenxworkouts.root.base.IPresenter;
 
@@ -12,13 +10,10 @@ import r4mstein.ua.thenxworkouts.root.base.IPresenter;
 public interface IHomeContract {
 
     interface Presenter extends IPresenter {
-        void urlLoaded(Uri uri);
-        void failedLoadUrl(Exception e);
+
     }
 
     interface Model extends IModel<Presenter> {
         void logout();
-        void getFileUrl(final String _url);
-        void loadDocument(String _collection, String _document);
     }
 }
