@@ -15,5 +15,6 @@ public interface ISplashContract {
 
     interface Model extends IModel<Presenter> {
         boolean isConnectionAvailable();
+        boolean isUserLogged();
     }
 }

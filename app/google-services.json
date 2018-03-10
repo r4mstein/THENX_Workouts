@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "983242489510",
+    "firebase_url": "https://thenx-workouts.firebaseio.com",
+    "project_id": "thenx-workouts",
+    "storage_bucket": "thenx-workouts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983242489510:android:5078e9c46d59a658",
+        "android_client_info": {
+          "package_name": "r4mstein.ua.thenxworkouts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983242489510-5npersnpov4dvcc30tqk6ceclbhj0g2i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "r4mstein.ua.thenxworkouts",
+            "certificate_hash": "9ba858aa4443e6bd98dacebb78c0be2ba39310dc"
+          }
+        },
+        {
+          "client_id": "983242489510-vemsou015t36nleuobg52eb8vp539h65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXp7thzmv9GChf5Y8ZvQSANwsJYAxEcKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983242489510-vemsou015t36nleuobg52eb8vp539h65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

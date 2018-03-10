@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBackground_AL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_bg"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rlMainContainer_AL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <EditText
+            android:id="@+id/etEmail_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="36dp"
+            android:hint="@string/register_hint_email"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:id="@+id/etPassword_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etEmail_AL"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/register_hint_password"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:id="@+id/btnLogin_AL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPassword_AL"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:paddingEnd="40dp"
+            android:paddingStart="40dp"
+            android:text="@string/login_btn_text"
+            android:textAllCaps="false"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvRegister_AL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="36dp"
+        android:text="@string/login_bottom_text"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>

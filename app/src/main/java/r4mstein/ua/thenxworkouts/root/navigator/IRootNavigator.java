@@ -9,4 +9,5 @@ import r4mstein.ua.thenxworkouts.root.base.INavigator;
 
 public interface IRootNavigator extends INavigator {
     void openHome(BaseActivity _activity);
+    void openAuth(BaseActivity _activity);
 }
