@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
@@ -28,6 +29,7 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindView(this);
+        showTrainigsFragment("beginer");
     }
 
     @DebugLog
@@ -36,6 +38,12 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
         mModel.logout();
         mRootNavigator.openAuth(this);
         finish();
+    }
+
+    @DebugLog
+    @Override
+    public void showTrainigsFragment(final String _level) {
+        replaceFragmentAndAddToBackStack(getRootContainer(), TrainingsFragment.newInstance(_level));
     }
 
     private int getRootContainer() {
