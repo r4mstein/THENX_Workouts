@@ -2,15 +2,21 @@ package r4mstein.ua.thenxworkouts.home.trainings;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.List;
 
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.home.navigator.IHomeNavigator;
+import r4mstein.ua.thenxworkouts.home.trainings.adapter.TrainingsAdapter;
+import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
 
 /**
@@ -26,6 +32,7 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     private static final String LEVEL = "level";
 
     private String mLevel;
+    private TrainingsAdapter mAdapter;
 
     @DebugLog
     public static TrainingsFragment newInstance(final String _level) {
@@ -49,6 +56,8 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
         final View view = _inflater.inflate(R.layout.trainings_fragment, _container, false);
         if (getArguments() != null && getArguments().containsKey(LEVEL)) mLevel = getArguments().getString(LEVEL);
         bindView(this, view);
+        setupToolbar();
+        setupList();
         return view;
     }
 
@@ -59,15 +68,33 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
         mModel.loadData(mLevel, "namesOfTrainings");
     }
 
+    private void setupList() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new TrainingsAdapter();
+        mAdapter.setClickListener(_day -> Toast.makeText(getContext(), _day, Toast.LENGTH_SHORT).show());
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
     @DebugLog
     @Override
-    public void dataLoaded(final TrainingsData _data) {
-
+    public void dataLoaded(final List<BaseDataHolder> _list, final TrainingsData _data) {
+        if (_list != null) {
+            mAdapter.setData(_list);
+            mAdapter.setChilds(_data);
+        }
     }
 
     @DebugLog
     @Override
     public void loadDataFailed(final Exception _e) {
+        Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 
+    private void setupToolbar() {
+        switch (mLevel) {
+            case "beginer":
+                mNavigator.setToolbarTitle("Beginner");
+                break;
+        }
     }
 }

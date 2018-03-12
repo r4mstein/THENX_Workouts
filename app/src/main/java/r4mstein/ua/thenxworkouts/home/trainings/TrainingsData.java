@@ -29,6 +29,7 @@ public final class TrainingsData {
     }
 
     public static class Part {
+        private int id;
         private String day1;
         private String day2;
         private String day3;
@@ -39,6 +40,14 @@ public final class TrainingsData {
 
         public Part() {
 
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getDay1() {
@@ -100,7 +109,8 @@ public final class TrainingsData {
         @Override
         public String toString() {
             return "Part{" +
-                    "day1='" + day1 + '\'' +
+                    "id=" + id +
+                    ", day1='" + day1 + '\'' +
                     ", day2='" + day2 + '\'' +
                     ", day3='" + day3 + '\'' +
                     ", day4='" + day4 + '\'' +

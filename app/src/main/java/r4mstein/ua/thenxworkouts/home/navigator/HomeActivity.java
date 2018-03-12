@@ -1,9 +1,11 @@
 package r4mstein.ua.thenxworkouts.home.navigator;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
@@ -12,6 +14,9 @@ import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
 public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Model>
         implements IHomeContract.Presenter, IHomeNavigator {
+
+    @BindView(R.id.tHomeToolbar_AH)
+    Toolbar mToolbar;
 
     @Inject
     IRootNavigator mRootNavigator;
@@ -27,9 +32,32 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         bindView(this);
+        setupUi();
         showTrainigsFragment("beginer");
+    }
+
+    @DebugLog
+    private void setupUi() {
+        setToolbarTitle(getString(R.string.app_name));
+        mToolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(v -> {
+            getSupportFragmentManager().popBackStack();
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) setToolbarTitle(getString(R.string.app_name));
+        });
+        //noinspection ConstantConditions
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportFragmentManager().addOnBackStackChangedListener(() ->
+                getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount() > 0)
+        );
+    }
+
+    @DebugLog
+    @Override
+    public final void setToolbarTitle(final String _title) {
+        mToolbar.setTitle(_title);
     }
 
     @DebugLog

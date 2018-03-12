@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="6dp"
+    android:background="@drawable/bg_child_item"
+    >
+
+    <TextView
+        android:id="@+id/tvDay_TCI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_day"
+        android:fontFamily="@font/firasans_regular"
+        android:paddingBottom="8dp"
+        android:paddingEnd="12dp"
+        android:paddingStart="32dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/white_alpha_85"
+        android:textSize="18sp"
+        tools:text="Day 1"
+        />
+
+    <TextView
+        android:id="@+id/tvName_TCI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/tvDay_TCI"
+        android:ellipsize="end"
+        android:fontFamily="@font/firasans_italic"
+        android:maxLines="1"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/white_alpha_85"
+        android:textSize="18sp"
+        tools:text="Chest &amp; Legs"
+        />
+
+</RelativeLayout>

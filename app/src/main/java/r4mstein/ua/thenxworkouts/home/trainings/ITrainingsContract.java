@@ -1,5 +1,8 @@
 package r4mstein.ua.thenxworkouts.home.trainings;
 
+import java.util.List;
+
+import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.IModel;
 import r4mstein.ua.thenxworkouts.root.base.IPresenter;
 
@@ -10,7 +13,7 @@ import r4mstein.ua.thenxworkouts.root.base.IPresenter;
 public interface ITrainingsContract {
 
     interface Presenter extends IPresenter {
-        void dataLoaded(TrainingsData _data);
+        void dataLoaded(List<BaseDataHolder> _list, TrainingsData _data);
         void loadDataFailed(Exception _e);
     }
 
