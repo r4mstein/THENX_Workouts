@@ -5,5 +5,6 @@ package r4mstein.ua.thenxworkouts.home.trainings.adapter;
  */
 
 public interface ClickListener {
-    void childClicked(String _day);
+    void headerClicked(String _part);
+    void childClicked(String _day, String _name);
 }

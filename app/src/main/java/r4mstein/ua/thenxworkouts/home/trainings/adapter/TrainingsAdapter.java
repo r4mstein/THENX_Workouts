@@ -10,10 +10,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
-import r4mstein.ua.thenxworkouts.home.trainings.TrainingsData;
+import r4mstein.ua.thenxworkouts.home.trainings.TrainingsDataDto;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.data_holder.ChildDataHolder;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.data_holder.HeaderDataHolder;
+import r4mstein.ua.thenxworkouts.home.trainings.adapter.models.ChildData;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseViewHolder;
 
@@ -29,7 +31,7 @@ public final class TrainingsAdapter extends RecyclerView.Adapter<BaseViewHolder>
     private static final int ITEM_COUNT = 7;
 
     private final List<BaseDataHolder> mData = new ArrayList<>();
-    private TrainingsData mChilds;
+    private TrainingsDataDto mChilds;
     private ClickListener mClickListener;
 
     public TrainingsAdapter() {
@@ -77,10 +79,12 @@ public final class TrainingsAdapter extends RecyclerView.Adapter<BaseViewHolder>
     }
 
     private void childClicked(final ChildVH _holder) {
-        mClickListener.childClicked(_holder.tvDay.getText().toString());
+        mClickListener.childClicked(_holder.tvDay.getText().toString(), _holder.tvName.getText().toString());
     }
 
+    @DebugLog
     private void headerClicked(final HeaderVH _holder, final int _position) {
+        mClickListener.headerClicked(_holder.tvHeader.getText().toString());
         if (((HeaderDataHolder)mData.get(_position)).getHeaderData().isExpanded()) {
             ((HeaderDataHolder) mData.get(_position)).getHeaderData().setIconId(R.drawable.ic_arrow_down);
             _holder.setIcon(((HeaderDataHolder) mData.get(_position)));
@@ -93,7 +97,7 @@ public final class TrainingsAdapter extends RecyclerView.Adapter<BaseViewHolder>
     }
 
     private void addItems(final int _headerId, final int _position) {
-        final TrainingsData.Part part = mChilds.getParts().get(_headerId - 1);
+        final TrainingsDataDto.Part part = mChilds.getParts().get(_headerId - 1);
         mData.add(_position + 1, new ChildDataHolder(new ChildData("Day " + 1, part.getDay1())));
         mData.add(_position + 2, new ChildDataHolder(new ChildData("Day " + 2, part.getDay2())));
         mData.add(_position + 3, new ChildDataHolder(new ChildData("Day " + 3, part.getDay3())));
@@ -125,7 +129,7 @@ public final class TrainingsAdapter extends RecyclerView.Adapter<BaseViewHolder>
         mClickListener = _clickListener;
     }
 
-    public void setChilds(final TrainingsData _childs) {
+    public void setChilds(final TrainingsDataDto _childs) {
         mChilds = _childs;
     }
 

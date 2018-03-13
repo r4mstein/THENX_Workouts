@@ -1,5 +1,6 @@
 package r4mstein.ua.thenxworkouts.home.navigator;
 
+import r4mstein.ua.thenxworkouts.home.WorkoutData;
 import r4mstein.ua.thenxworkouts.root.base.INavigator;
 
 /**
@@ -10,4 +11,5 @@ public interface IHomeNavigator extends INavigator {
     void setToolbarTitle(String _title);
     void logout();
     void showTrainigsFragment(String _level);
+    void showWorkoutFragment(WorkoutData _data);
 }

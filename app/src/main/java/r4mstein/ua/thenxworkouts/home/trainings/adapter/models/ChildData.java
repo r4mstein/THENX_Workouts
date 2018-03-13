@@ -1,4 +1,4 @@
-package r4mstein.ua.thenxworkouts.home.trainings.adapter;
+package r4mstein.ua.thenxworkouts.home.trainings.adapter.models;
 
 /**
  * Created by Alex Shtain on 10.03.2018.
@@ -8,16 +8,16 @@ public final class ChildData {
     private String mDay;
     private String mTrainingName;
 
-    ChildData(final String _day, final String _trainingName) {
+    public ChildData(final String _day, final String _trainingName) {
         mDay = _day;
         mTrainingName = _trainingName;
     }
 
-    String getDay() {
+    public String getDay() {
         return mDay;
     }
 
-    String getTrainingName() {
+    public String getTrainingName() {
         return mTrainingName;
     }
 

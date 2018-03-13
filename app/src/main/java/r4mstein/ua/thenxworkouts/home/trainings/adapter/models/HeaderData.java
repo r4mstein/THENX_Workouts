@@ -1,4 +1,4 @@
-package r4mstein.ua.thenxworkouts.home.trainings.adapter;
+package r4mstein.ua.thenxworkouts.home.trainings.adapter.models;
 
 import r4mstein.ua.thenxworkouts.R;
 
@@ -17,27 +17,27 @@ public final class HeaderData {
         mId = _id;
     }
 
-    int getId() {
+    public int getId() {
         return mId;
     }
 
-    String getHeader() {
+    public String getHeader() {
         return mHeader;
     }
 
-    boolean isExpanded() {
+    public boolean isExpanded() {
         return isExpanded;
     }
 
-    void setExpanded(final boolean _expanded) {
+    public void setExpanded(final boolean _expanded) {
         isExpanded = _expanded;
     }
 
-    int getIconId() {
+    public int getIconId() {
         return mIconId;
     }
 
-    void setIconId(int iconId) {
+    public void setIconId(int iconId) {
         mIconId = iconId;
     }
 

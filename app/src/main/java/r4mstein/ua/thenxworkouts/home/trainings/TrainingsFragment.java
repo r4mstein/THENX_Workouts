@@ -14,7 +14,9 @@ import java.util.List;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.home.WorkoutData;
 import r4mstein.ua.thenxworkouts.home.navigator.IHomeNavigator;
+import r4mstein.ua.thenxworkouts.home.trainings.adapter.ClickListener;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.TrainingsAdapter;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
@@ -32,6 +34,8 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     private static final String LEVEL = "level";
 
     private String mLevel;
+    private String mToolbarTitle;
+    private String mPart;
     private TrainingsAdapter mAdapter;
 
     @DebugLog
@@ -71,13 +75,25 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     private void setupList() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new TrainingsAdapter();
-        mAdapter.setClickListener(_day -> Toast.makeText(getContext(), _day, Toast.LENGTH_SHORT).show());
+        mAdapter.setClickListener(mListClickListener);
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    final ClickListener mListClickListener = new ClickListener() {
+        @Override
+        public void headerClicked(final String _part) {
+            mPart = _part;
+        }
+
+        @Override
+        public void childClicked(final String _day, final String _name) {
+            mNavigator.showWorkoutFragment(new WorkoutData(mLevel, mPart, _day, _name));
+        }
+    };
+
     @DebugLog
     @Override
-    public void dataLoaded(final List<BaseDataHolder> _list, final TrainingsData _data) {
+    public void dataLoaded(final List<BaseDataHolder> _list, final TrainingsDataDto _data) {
         if (_list != null) {
             mAdapter.setData(_list);
             mAdapter.setChilds(_data);
@@ -93,7 +109,8 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     private void setupToolbar() {
         switch (mLevel) {
             case "beginer":
-                mNavigator.setToolbarTitle("Beginner");
+                mToolbarTitle = "Beginner";
+                mNavigator.setToolbarTitle(mToolbarTitle);
                 break;
         }
     }
