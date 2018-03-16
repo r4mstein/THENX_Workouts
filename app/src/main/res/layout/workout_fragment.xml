@@ -5,70 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/tvPart_WF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvDay_WF"
-        android:layout_alignBottom="@+id/tvDay_WF"
-        android:layout_marginEnd="12dp"
-        android:layout_toStartOf="@+id/tvDay_WF"
-        android:background="@drawable/bg_header_item"
-        android:fontFamily="@font/firasans_medium"
-        android:padding="7dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/white_alpha_85"
-        android:textSize="17sp"
-        tools:text="Part 1"
-        />
-
-    <TextView
-        android:id="@+id/tvDay_WF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tvDescription_WF"
-        android:layout_below="@+id/tvName_WF"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_header_item"
-        android:fontFamily="@font/firasans_medium"
-        android:padding="7dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/white_alpha_85"
-        android:textSize="17sp"
-        tools:text="Day 1"/>
-
-    <TextView
-        android:id="@+id/tvName_WF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_header_item"
-        android:ellipsize="end"
-        android:fontFamily="@font/firasans_medium"
-        android:maxLines="1"
-        android:padding="7dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/white_alpha_85"
-        android:textSize="17sp"
-        tools:text="Whole Body"
-        />
-
-    <TextView
-        android:id="@+id/tvDescription_WF"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_WF"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvPart_WF"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/firasans_regular"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        tools:text="Bla Bla"
-        />
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"/>
 
 </RelativeLayout>

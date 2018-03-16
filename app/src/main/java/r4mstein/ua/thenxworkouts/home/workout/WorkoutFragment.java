@@ -2,10 +2,12 @@ package r4mstein.ua.thenxworkouts.home.workout;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.home.WorkoutData;
 import r4mstein.ua.thenxworkouts.home.navigator.IHomeNavigator;
+import r4mstein.ua.thenxworkouts.home.workout.adapter.WorkoutAdapter;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
 
@@ -24,18 +27,13 @@ import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
 public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkoutContract.Model>
         implements IWorkoutContract.Presenter {
 
-    @BindView(R.id.tvPart_WF)
-    TextView tvPart;
-    @BindView(R.id.tvDay_WF)
-    TextView tvDay;
-    @BindView(R.id.tvName_WF)
-    TextView tvName;
-    @BindView(R.id.tvDescription_WF)
-    TextView tvDescription;
+    @BindView(R.id.rv_WF)
+    RecyclerView mRecyclerView;
 
     public static final String DATA_KEY = "data_key";
 
     private WorkoutData mData;
+    private WorkoutAdapter mAdapter;
 
     @DebugLog
     public static WorkoutFragment newInstance(final WorkoutData _data) {
@@ -66,27 +64,22 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
     @Override
     public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
-        mModel.loadData(mData.getLevel(), createDocumentName());
-    }
-
-    private String createDocumentName() {
-        return mData.getPart().replace(" ", "") + mData.getDay().replace(" ", "");
+        mModel.loadData(mData);
     }
 
     private void setupUi() {
-        tvDay.setText(mData.getDay());
-        tvName.setText(mData.getWorkoutName());
-        tvPart.setText(mData.getPart());
-        tvDescription.setText(getString(R.string.workout_description));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new WorkoutAdapter();
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void dataLoaded(List<BaseDataHolder> _list) {
-
+        if (_list != null) mAdapter.setData(_list);
     }
 
     @Override
     public void loadDataFailed(Exception _e) {
-
+        Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

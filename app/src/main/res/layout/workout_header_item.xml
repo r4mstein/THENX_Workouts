@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="16dp"
     android:background="@drawable/bg_header"
     android:elevation="6dp">
 
@@ -18,7 +18,7 @@
         android:fontFamily="@font/firasans_black"
         android:paddingBottom="6dp"
         android:paddingTop="6dp"
-        android:textColor="@color/white_alpha_85"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         tools:text="Warm Up"
         />

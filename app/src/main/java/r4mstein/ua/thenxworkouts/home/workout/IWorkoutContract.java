@@ -2,6 +2,7 @@ package r4mstein.ua.thenxworkouts.home.workout;
 
 import java.util.List;
 
+import r4mstein.ua.thenxworkouts.home.WorkoutData;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.IModel;
 import r4mstein.ua.thenxworkouts.root.base.IPresenter;
@@ -18,6 +19,6 @@ public interface IWorkoutContract {
     }
 
     interface Model extends IModel<Presenter> {
-        void loadData(String _collection, String _document);
+        void loadData(WorkoutData _data);
     }
 }
