@@ -87,7 +87,8 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
 
         @Override
         public void childClicked(final String _day, final String _name) {
-            mNavigator.showWorkoutFragment(new WorkoutData(mLevel, mPart, _day, _name));
+            if (_name.equals("Rest")) Toast.makeText(getContext(), "Day of Rest", Toast.LENGTH_SHORT).show();
+            else mNavigator.showWorkoutFragment(new WorkoutData(mLevel, mPart, _day, _name));
         }
     };
 

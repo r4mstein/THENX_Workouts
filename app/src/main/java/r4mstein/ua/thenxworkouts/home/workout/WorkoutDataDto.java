@@ -82,6 +82,10 @@ public final class WorkoutDataDto {
         private List<Exercise> mRoundOne;
         @SerializedName("roundOneCount")
         private int mRoundOneCount;
+        @SerializedName("roundTwo")
+        private List<Exercise> mRoundTwo;
+        @SerializedName("roundTwoCount")
+        private int mRoundTwoCount;
 
         public Workout() {
 
@@ -103,11 +107,29 @@ public final class WorkoutDataDto {
             this.mRoundOneCount = roundOneCount;
         }
 
+        public List<Exercise> getRoundTwo() {
+            return mRoundTwo;
+        }
+
+        public void setRoundTwo(List<Exercise> roundTwo) {
+            mRoundTwo = roundTwo;
+        }
+
+        public int getRoundTwoCount() {
+            return mRoundTwoCount;
+        }
+
+        public void setRoundTwoCount(int roundTwoCount) {
+            this.mRoundTwoCount = roundTwoCount;
+        }
+
         @Override
         public String toString() {
             return "Workout{" +
-                    "mRoundOne=" + mRoundOne +
-                    ", mRoundOneCount=" + mRoundOneCount +
+                    "RoundOne=" + mRoundOne +
+                    ", RoundOneCount=" + mRoundOneCount +
+                    ", RoundTwo=" + mRoundTwo +
+                    ", RoundTwoCount=" + mRoundTwoCount +
                     '}';
         }
     }

@@ -67,18 +67,29 @@ public final class WorkoutModelImpl extends BaseModel<IWorkoutContract.Presenter
 
         list.add(new InfoDH(new InfoData(mData.getPart(), mData.getDay(), mData.getWorkoutName())));
 
+        // warm up
         list.add(new HeaderDH(new HeaderData("Warm Up")));
         for (WorkoutDataDto.Exercise exercise : _data.getWarmUp().getExercises()) {
             list.add(createItemDH(exercise));
         }
         list.add(new RoundDH(new RoundData("", String.valueOf(_data.getWarmUp().getCount()), false, false)));
 
+        // round one
         list.add(new HeaderDH(new HeaderData("Workout")));
         list.add(new RoundDH(new RoundData("Round One", "", true, true)));
         for (WorkoutDataDto.Exercise exercise : _data.getTrain().getRoundOne()) {
             list.add(createItemDH(exercise));
         }
         list.add(new RoundDH(new RoundData("", String.valueOf(_data.getTrain().getRoundOneCount()), true, false)));
+
+        // round two
+        if (_data.getTrain().getRoundTwo() != null) {
+            list.add(new RoundDH(new RoundData("Round Two", "", true, true)));
+            for (WorkoutDataDto.Exercise exercise : _data.getTrain().getRoundTwo()) {
+                list.add(createItemDH(exercise));
+            }
+            list.add(new RoundDH(new RoundData("", String.valueOf(_data.getTrain().getRoundTwoCount()), true, false)));
+        }
 
         return list;
     }

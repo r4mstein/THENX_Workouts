@@ -32,8 +32,14 @@ public final class ItemVH extends BaseViewHolder<ItemDH> {
     public void setData(final ItemDH _data) {
         tvNumber.setText(_data.getData().getNumber());
         tvName.setText(_data.getData().getName());
-        if (_data.getData().getRepeat().equals("0")) tvRepeat.setText(String.format("Time: %s sec", _data.getData().getTime()));
-        else tvRepeat.setText(String.format("Repetition: %s", _data.getData().getRepeat()));
+        if (_data.getData().getRepeat().equals("0")) {
+            if (_data.getData().getTime().equals("-1")) tvRepeat.setText(R.string.max_time);
+            else tvRepeat.setText(String.format("Time: %s sec", _data.getData().getTime()));
+        }
+        else {
+            if (_data.getData().getRepeat().equals("-1")) tvRepeat.setText(R.string.max_repetition);
+            else tvRepeat.setText(String.format("Repetition: %s", _data.getData().getRepeat()));
+        }
         setupPlayer(_data.getData().getPlayerLink());
     }
 
