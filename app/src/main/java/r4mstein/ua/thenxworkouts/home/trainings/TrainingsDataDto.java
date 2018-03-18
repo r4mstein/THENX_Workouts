@@ -6,10 +6,10 @@ import java.util.List;
  * Created by Alex Shtain on 10.03.2018.
  */
 @SuppressWarnings("unused")
-public final class TrainingsData {
+public final class TrainingsDataDto {
     private List<Part> parts;
 
-    public TrainingsData() {
+    public TrainingsDataDto() {
 
     }
 
@@ -23,7 +23,7 @@ public final class TrainingsData {
 
     @Override
     public String toString() {
-        return "TrainingsData{" +
+        return "TrainingsDataDto{" +
                 "parts=" + parts +
                 '}';
     }

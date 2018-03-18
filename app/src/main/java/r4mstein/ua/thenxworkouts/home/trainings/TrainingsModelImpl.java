@@ -9,8 +9,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import hugo.weaving.DebugLog;
-import r4mstein.ua.thenxworkouts.home.trainings.adapter.HeaderData;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.data_holder.HeaderDataHolder;
+import r4mstein.ua.thenxworkouts.home.trainings.adapter.models.HeaderData;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseModel;
 import r4mstein.ua.thenxworkouts.root.firebase.IFirebaseManager;
@@ -38,7 +38,7 @@ public final class TrainingsModelImpl extends BaseModel<ITrainingsContract.Prese
         if (_task.isSuccessful()) {
             DocumentSnapshot document = _task.getResult();
             if (document != null && document.exists()) {
-                final TrainingsData data = document.toObject(TrainingsData.class);
+                final TrainingsDataDto data = document.toObject(TrainingsDataDto.class);
                 final List<BaseDataHolder> list = createListData(data);
                 mPresenter.dataLoaded(list, data);
             } else {
@@ -49,10 +49,10 @@ public final class TrainingsModelImpl extends BaseModel<ITrainingsContract.Prese
         }
     };
 
-    private List<BaseDataHolder> createListData(TrainingsData _data) {
+    private List<BaseDataHolder> createListData(TrainingsDataDto _data) {
         final List<BaseDataHolder> list = new ArrayList<>();
 
-        final List<TrainingsData.Part> parts = _data.getParts();
+        final List<TrainingsDataDto.Part> parts = _data.getParts();
         for (int i = 0; i < parts.size(); i++) {
             list.add(new HeaderDataHolder(new HeaderData(parts.get(i).getId(), "Part " + parts.get(i).getId())));
         }

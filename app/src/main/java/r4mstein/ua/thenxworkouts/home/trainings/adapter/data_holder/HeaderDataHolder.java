@@ -1,7 +1,7 @@
 package r4mstein.ua.thenxworkouts.home.trainings.adapter.data_holder;
 
 import r4mstein.ua.thenxworkouts.home.trainings.Constants;
-import r4mstein.ua.thenxworkouts.home.trainings.adapter.HeaderData;
+import r4mstein.ua.thenxworkouts.home.trainings.adapter.models.HeaderData;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 
 /**

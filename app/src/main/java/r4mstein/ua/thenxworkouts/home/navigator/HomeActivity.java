@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.home.WorkoutData;
 import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
+import r4mstein.ua.thenxworkouts.home.workout.WorkoutFragment;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
@@ -72,6 +74,12 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
     @Override
     public void showTrainigsFragment(final String _level) {
         replaceFragmentAndAddToBackStack(getRootContainer(), TrainingsFragment.newInstance(_level));
+    }
+
+    @DebugLog
+    @Override
+    public void showWorkoutFragment(final WorkoutData _data) {
+        replaceFragmentAndAddToBackStack(getRootContainer(), WorkoutFragment.newInstance(_data));
     }
 
     private int getRootContainer() {

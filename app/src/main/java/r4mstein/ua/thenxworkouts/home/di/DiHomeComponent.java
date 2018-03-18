@@ -4,6 +4,8 @@ import dagger.Component;
 import r4mstein.ua.thenxworkouts.home.navigator.HomeActivity;
 import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
 import r4mstein.ua.thenxworkouts.home.trainings.di.DiTrainingsModule;
+import r4mstein.ua.thenxworkouts.home.workout.WorkoutFragment;
+import r4mstein.ua.thenxworkouts.home.workout.di.DiWorkoutModule;
 import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
 
 /**
@@ -12,10 +14,12 @@ import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
 @HomeScope
 @Component(modules = {
         DiHomeModule.class,
-        DiTrainingsModule.class
+        DiTrainingsModule.class,
+        DiWorkoutModule.class
 },
         dependencies = DiRootComponent.class)
 public interface DiHomeComponent {
     void inject(HomeActivity _activity);
     void inject(TrainingsFragment _fragment);
+    void inject(WorkoutFragment _fragment);
 }
