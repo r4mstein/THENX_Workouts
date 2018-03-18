@@ -68,6 +68,7 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
     }
 
     private void setupUi() {
+        mNavigator.setToolbarTitle(mData.getWorkoutName());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new WorkoutAdapter();
         mRecyclerView.setAdapter(mAdapter);

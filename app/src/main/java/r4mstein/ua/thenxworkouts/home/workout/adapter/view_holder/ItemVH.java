@@ -3,6 +3,7 @@ package r4mstein.ua.thenxworkouts.home.workout.adapter.view_holder;
 import android.view.View;
 import android.widget.TextView;
 
+import cn.jzvd.JZVideoPlayerStandard;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.home.workout.adapter.data_holder.ItemDH;
 import r4mstein.ua.thenxworkouts.root.base.BaseViewHolder;
@@ -33,5 +34,12 @@ public final class ItemVH extends BaseViewHolder<ItemDH> {
         tvName.setText(_data.getData().getName());
         if (_data.getData().getRepeat().equals("0")) tvRepeat.setText(String.format("Time: %s sec", _data.getData().getTime()));
         else tvRepeat.setText(String.format("Repetition: %s", _data.getData().getRepeat()));
+        setupPlayer(_data.getData().getPlayerLink());
+    }
+
+    private void setupPlayer(final String _link) {
+        vpPlayer.batteryLevel.setVisibility(View.GONE);
+        vpPlayer.setUp(_link, JZVideoPlayerStandard.SCREEN_WINDOW_LIST, "");
+        vpPlayer.thumbImageView.setImageResource(R.drawable.main_logo_);
     }
 }

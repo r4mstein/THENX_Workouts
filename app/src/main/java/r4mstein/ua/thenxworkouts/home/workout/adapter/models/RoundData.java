@@ -8,11 +8,13 @@ public final class RoundData {
     private String mHeader;
     private String mRepeat;
     private boolean isRound;
+    private boolean isHeader;
 
-    public RoundData(final String _header, final String _repeat, final boolean _isRound) {
+    public RoundData(final String _header, final String _repeat, final boolean _isRound, final boolean _isHeader) {
         mHeader = _header;
         mRepeat = _repeat;
         isRound = _isRound;
+        isHeader = _isHeader;
     }
 
     public String getHeader() {
@@ -27,12 +29,17 @@ public final class RoundData {
         return isRound;
     }
 
+    public boolean isHeader() {
+        return isHeader;
+    }
+
     @Override
     public String toString() {
         return "RoundData{" +
                 "Header='" + mHeader + '\'' +
                 ", Repeat='" + mRepeat + '\'' +
                 ", isRound=" + isRound +
+                ", isHeader=" + isHeader +
                 '}';
     }
 }
