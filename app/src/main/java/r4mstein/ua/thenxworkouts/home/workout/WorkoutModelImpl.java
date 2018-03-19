@@ -96,6 +96,7 @@ public final class WorkoutModelImpl extends BaseModel<IWorkoutContract.Presenter
 
     private ItemDH createItemDH(final WorkoutDataDto.Exercise _exercise) {
         return new ItemDH(new ItemData(String.valueOf(_exercise.getId()), _exercise.getName(),
-                String.valueOf(_exercise.getRepetition()), String.valueOf(_exercise.getTime()), _exercise.getLink()));
+                String.valueOf(_exercise.getRepetition()), String.valueOf(_exercise.getTime()),
+                _exercise.getLink(), _exercise.getChelRepeat()));
     }
 }

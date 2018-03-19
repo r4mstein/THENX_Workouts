@@ -16,4 +16,6 @@
 
     <string name="max_time">Time: MAX</string>
     <string name="max_repetition">Repetition: MAX</string>
+    <string name="time">Time:</string>
+    <string name="repetition">Repetition:</string>
 </resources>
