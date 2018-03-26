@@ -5,6 +5,8 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.di.DiDialogShowerModule;
 import r4mstein.ua.thenxworkouts.root.firebase.IFirebaseManager;
 import r4mstein.ua.thenxworkouts.root.firebase.di.DiFirebaseManagerModule;
 import r4mstein.ua.thenxworkouts.root.navigator.DiRootNavigatorModule;
@@ -20,7 +22,8 @@ import r4mstein.ua.thenxworkouts.root.network.di.DiNetworkModule;
         DiAppModule.class,
         DiNetworkModule.class,
         DiRootNavigatorModule.class,
-        DiFirebaseManagerModule.class
+        DiFirebaseManagerModule.class,
+        DiDialogShowerModule.class
 })
 public interface DiRootComponent {
     Context context();
@@ -28,4 +31,5 @@ public interface DiRootComponent {
 
     INetworkManager networkManager();
     IFirebaseManager firebaseManager();
+    IDialogShower dialogShower();
 }

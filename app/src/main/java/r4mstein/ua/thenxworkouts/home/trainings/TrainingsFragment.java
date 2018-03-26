@@ -69,6 +69,7 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     @Override
     public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
+        showLoader();
         mModel.loadData(mLevel, "namesOfTrainings");
     }
 
@@ -99,11 +100,13 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
             mAdapter.setData(_list);
             mAdapter.setChilds(_data);
         }
+        removeLoader();
     }
 
     @DebugLog
     @Override
     public void loadDataFailed(final Exception _e) {
+        removeLoader();
         Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 

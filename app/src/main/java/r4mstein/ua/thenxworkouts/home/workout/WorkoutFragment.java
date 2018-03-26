@@ -64,6 +64,7 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
     @Override
     public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
+        showLoader();
         mModel.loadData(mData);
     }
 
@@ -75,12 +76,14 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
     }
 
     @Override
-    public void dataLoaded(List<BaseDataHolder> _list) {
+    public void dataLoaded(final List<BaseDataHolder> _list) {
         if (_list != null) mAdapter.setData(_list);
+        removeLoader();
     }
 
     @Override
-    public void loadDataFailed(Exception _e) {
+    public void loadDataFailed(final Exception _e) {
+        removeLoader();
         Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -11,7 +11,9 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.root.ObjectGraph;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
 
 /**
  * Created by Alex Shtain on 27.02.2018.
@@ -25,6 +27,8 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
     protected M mModel;
     protected ObjectGraph mObjectGraph;
     protected Unbinder mUnbinder;
+    @Inject
+    protected IDialogShower mDialogShower;
 
     protected abstract void init();
 
@@ -55,5 +59,15 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
         super.onDestroyView();
         mUnbinder.unbind();
         mModel.removePresenter();
+    }
+
+    @DebugLog
+    protected void showLoader() {
+        mDialogShower.showLoader(getChildFragmentManager());
+    }
+
+    @DebugLog
+    protected void removeLoader() {
+        mDialogShower.removeLoader(getChildFragmentManager());
     }
 }
