@@ -1,0 +1,90 @@
+package r4mstein.ua.thenxworkouts.root.dialogs;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+
+/**
+ * Created by Alex Shtain on 26.03.2018.
+ */
+
+public final class DialogGeneric extends DialogFragment {
+
+    @BindView(R.id.tvTitle_DG)
+    TextView tvTitle;
+    @BindView(R.id.tvMessage_DG)
+    TextView tvMessage;
+    @BindView(R.id.btnPositive_DG)
+    TextView btnPositive;
+    @BindView(R.id.btnNegative_DG)
+    TextView btnNegative;
+
+    private Unbinder mUnbinder;
+
+    @Nullable
+    @Override
+    public View onCreateView(final LayoutInflater _inflater, @Nullable final ViewGroup _container, @Nullable final Bundle _savedInstanceState) {
+        final View view =_inflater.inflate(R.layout.dialog_generic, _container, false);
+        //noinspection ConstantConditions
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+        mUnbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
+        super.onViewCreated(_view, _savedInstanceState);
+        fillUI();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
+    }
+
+    private void fillUI() {
+        final IDialogShower.Data data = (IDialogShower.Data) getArguments().getSerializable(IDialogShower.KEY_DATA);
+        if (data != null) {
+            tvTitle.setText(data.getTitle());
+            tvMessage.setText(data.getMessage());
+            setupButtons(data);
+        }
+    }
+
+    private void setupButtons(final IDialogShower.Data _data) {
+        final int code = _data.getCode();
+        final IDialogShower.DialogListener dialogListener = (IDialogShower.DialogListener)
+                (getParentFragment() == null ? getActivity() : getParentFragment());
+
+        if (_data.isPositiveButtonEnabled()) {
+            if (!TextUtils.isEmpty(_data.getPositiveButtonText())) btnPositive.setText(_data.getPositiveButtonText());
+            btnPositive.setOnClickListener((View v) -> {
+                dialogListener.onDialogClick(IDialogShower.DialogButton.POSITIVE, code);
+                dismiss();
+            });
+        }
+
+        if (_data.isNegativeButtonEnabled()) {
+            btnNegative.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(_data.getNegativeButtonText())) btnNegative.setText(_data.getNegativeButtonText());
+            btnNegative.setOnClickListener((View v) -> {
+                dialogListener.onDialogClick(IDialogShower.DialogButton.NEGATIVE, code);
+                dismiss();
+            });
+        }
+    }
+}

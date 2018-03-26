@@ -20,6 +20,7 @@ import r4mstein.ua.thenxworkouts.home.trainings.adapter.ClickListener;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.TrainingsAdapter;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
 
 /**
  * Created by Alex Shtain on 10.03.2018.
@@ -108,6 +109,10 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     public void loadDataFailed(final Exception _e) {
         removeLoader();
         Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
+        mDialogShower.showGenericDialog(getChildFragmentManager(),
+                new IDialogShower.Data()
+                        .setTitle("Error")
+                        .setMessage(_e.getMessage()));
     }
 
     private void setupToolbar() {

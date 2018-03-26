@@ -20,7 +20,7 @@ import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
  */
 
 public abstract class BaseFragment<N extends INavigator, M extends IModel> extends Fragment
-        implements IPresenter {
+        implements IPresenter, IDialogShower.DialogListener {
 
     protected N mNavigator;
     @Inject
@@ -69,5 +69,15 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
     @DebugLog
     protected void removeLoader() {
         mDialogShower.removeLoader(getChildFragmentManager());
+    }
+
+    /**
+     * See {@link BaseActivity#onDialogClick} for docs
+     */
+    @CallSuper
+    @DebugLog
+    @Override
+    public void onDialogClick(final IDialogShower.DialogButton _button, final int _code) {
+
     }
 }

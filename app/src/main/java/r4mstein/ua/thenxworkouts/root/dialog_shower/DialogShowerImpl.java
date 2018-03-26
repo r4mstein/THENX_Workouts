@@ -1,11 +1,13 @@
 package r4mstein.ua.thenxworkouts.root.dialog_shower;
 
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
+import r4mstein.ua.thenxworkouts.root.dialogs.DialogGeneric;
 import r4mstein.ua.thenxworkouts.root.dialogs.DialogLoader;
 
 /**
@@ -17,6 +19,18 @@ public final class DialogShowerImpl implements IDialogShower {
     private static final String TAG_LOADER = "tag_loader";
     private FragmentManager mManager;
     private boolean isLoaderRunning = false;
+
+    @DebugLog
+    @Override
+    public void showGenericDialog(final FragmentManager _manager, final Data _data) {
+        final Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_DATA, _data);
+
+        final DialogGeneric dialog = new DialogGeneric();
+        dialog.setCancelable(_data.isCancelable());
+        dialog.setArguments(bundle);
+        dialog.show(_manager, null);
+    }
 
     @DebugLog
     @Override
