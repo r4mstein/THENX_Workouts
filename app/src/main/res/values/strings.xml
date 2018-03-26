@@ -13,4 +13,9 @@
     <string name="login_bottom_text">Do not have an account? Register</string>
 
     <string name="workout_description">The repetitions and time in the workout are aims. Rest 1 – 2 minutes between rounds and 30 seconds between exercises. Maintain ideal shape and observe the safety engineering.</string>
+
+    <string name="max_time">Time: MAX</string>
+    <string name="max_repetition">Repetition: MAX</string>
+    <string name="time">Time:</string>
+    <string name="repetition">Repetition:</string>
 </resources>

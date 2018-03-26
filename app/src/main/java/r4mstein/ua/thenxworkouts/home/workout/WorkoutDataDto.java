@@ -37,8 +37,8 @@ public final class WorkoutDataDto {
     @Override
     public String toString() {
         return "WorkoutDataDto{" +
-                "mWarmUp=" + mWarmUp +
-                ", mTrain=" + mTrain +
+                "WarmUp=" + mWarmUp +
+                ", Train=" + mTrain +
                 '}';
     }
 
@@ -71,8 +71,8 @@ public final class WorkoutDataDto {
         @Override
         public String toString() {
             return "WarmUp{" +
-                    "mExercises=" + mExercises +
-                    ", mCount=" + mCount +
+                    "Exercises=" + mExercises +
+                    ", Count=" + mCount +
                     '}';
         }
     }
@@ -82,6 +82,10 @@ public final class WorkoutDataDto {
         private List<Exercise> mRoundOne;
         @SerializedName("roundOneCount")
         private int mRoundOneCount;
+        @SerializedName("roundTwo")
+        private List<Exercise> mRoundTwo;
+        @SerializedName("roundTwoCount")
+        private int mRoundTwoCount;
 
         public Workout() {
 
@@ -103,11 +107,29 @@ public final class WorkoutDataDto {
             this.mRoundOneCount = roundOneCount;
         }
 
+        public List<Exercise> getRoundTwo() {
+            return mRoundTwo;
+        }
+
+        public void setRoundTwo(List<Exercise> roundTwo) {
+            mRoundTwo = roundTwo;
+        }
+
+        public int getRoundTwoCount() {
+            return mRoundTwoCount;
+        }
+
+        public void setRoundTwoCount(int roundTwoCount) {
+            this.mRoundTwoCount = roundTwoCount;
+        }
+
         @Override
         public String toString() {
             return "Workout{" +
-                    "mRoundOne=" + mRoundOne +
-                    ", mRoundOneCount=" + mRoundOneCount +
+                    "RoundOne=" + mRoundOne +
+                    ", RoundOneCount=" + mRoundOneCount +
+                    ", RoundTwo=" + mRoundTwo +
+                    ", RoundTwoCount=" + mRoundTwoCount +
                     '}';
         }
     }
@@ -123,6 +145,8 @@ public final class WorkoutDataDto {
         private int mTime;
         @SerializedName("link")
         private String mLink;
+        @SerializedName("chelRepeat")
+        private String mChelRepeat;
 
         public Exercise() {
 
@@ -168,14 +192,23 @@ public final class WorkoutDataDto {
             this.mLink = link;
         }
 
+        public String getChelRepeat() {
+            return mChelRepeat;
+        }
+
+        public void setChelRepeat(String chelRepeat) {
+            mChelRepeat = chelRepeat;
+        }
+
         @Override
         public String toString() {
             return "Exercise{" +
-                    "mId=" + mId +
-                    ", mName='" + mName + '\'' +
-                    ", mRepetition=" + mRepetition +
-                    ", mTime=" + mTime +
-                    ", mLink='" + mLink + '\'' +
+                    "Id=" + mId +
+                    ", Name='" + mName + '\'' +
+                    ", Repetition=" + mRepetition +
+                    ", Time=" + mTime +
+                    ", Link='" + mLink + '\'' +
+                    ", ChalRepeat='" + mChelRepeat + '\'' +
                     '}';
         }
     }
