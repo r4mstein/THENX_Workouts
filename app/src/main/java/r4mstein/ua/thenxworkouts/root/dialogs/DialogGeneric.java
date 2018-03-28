@@ -1,6 +1,7 @@
 package r4mstein.ua.thenxworkouts.root.dialogs;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
@@ -33,19 +34,17 @@ public final class DialogGeneric extends DialogFragment {
 
     private Unbinder mUnbinder;
 
-    @Nullable
+    @NonNull
     @Override
     public View onCreateView(final LayoutInflater _inflater, @Nullable final ViewGroup _container, @Nullable final Bundle _savedInstanceState) {
         final View view =_inflater.inflate(R.layout.dialog_generic, _container, false);
-        //noinspection ConstantConditions
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        getDialog().getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+        setupDialog();
         mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
-    public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
+    public void onViewCreated(@NonNull final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
         fillUI();
     }
@@ -56,8 +55,16 @@ public final class DialogGeneric extends DialogFragment {
         mUnbinder.unbind();
     }
 
+    private void setupDialog() {
+        //noinspection ConstantConditions
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+    }
+
     private void fillUI() {
-        final IDialogShower.Data data = (IDialogShower.Data) getArguments().getSerializable(IDialogShower.KEY_DATA);
+        IDialogShower.Data data = null;
+        if (getArguments() != null) data = (IDialogShower.Data) getArguments().getSerializable(IDialogShower.KEY_DATA);
         if (data != null) {
             tvTitle.setText(data.getTitle());
             tvMessage.setText(data.getMessage());
@@ -73,7 +80,7 @@ public final class DialogGeneric extends DialogFragment {
         if (_data.isPositiveButtonEnabled()) {
             if (!TextUtils.isEmpty(_data.getPositiveButtonText())) btnPositive.setText(_data.getPositiveButtonText());
             btnPositive.setOnClickListener((View v) -> {
-                dialogListener.onDialogClick(IDialogShower.DialogButton.POSITIVE, code);
+                if (dialogListener != null) dialogListener.onDialogClick(IDialogShower.DialogButton.POSITIVE, code);
                 dismiss();
             });
         }
@@ -82,7 +89,7 @@ public final class DialogGeneric extends DialogFragment {
             btnNegative.setVisibility(View.VISIBLE);
             if (!TextUtils.isEmpty(_data.getNegativeButtonText())) btnNegative.setText(_data.getNegativeButtonText());
             btnNegative.setOnClickListener((View v) -> {
-                dialogListener.onDialogClick(IDialogShower.DialogButton.NEGATIVE, code);
+                if (dialogListener != null) dialogListener.onDialogClick(IDialogShower.DialogButton.NEGATIVE, code);
                 dismiss();
             });
         }
