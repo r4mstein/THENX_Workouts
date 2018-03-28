@@ -17,7 +17,7 @@ import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthNavigator;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
-import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -68,10 +68,7 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @DebugLog
     private AuthData createData(final String _email, final String _pass) {
         if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_pass)) {
-            mDialogShower.showGenericDialog(getChildFragmentManager(),
-                    new IDialogShower.Data()
-                            .setTitle("Warning")
-                            .setMessage(getString(R.string.register_fields_warning_message)));
+            showErrorMessage(IErrorManager.Type.WARNING, "Login", getString(R.string.warning_empty_fields));
             return null;
         } else {
             return new AuthData(_email, _pass);
@@ -95,9 +92,6 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @Override
     public void loginFailed(final Exception _e) {
         removeLoader();
-        mDialogShower.showGenericDialog(getChildFragmentManager(),
-                new IDialogShower.Data()
-                        .setTitle("Error")
-                        .setMessage(_e.getMessage()));
+        showErrorMessage(IErrorManager.Type.ERROR, "Login", _e.getMessage());
     }
 }

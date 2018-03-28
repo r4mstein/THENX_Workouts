@@ -17,7 +17,7 @@ import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthNavigator;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
-import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -82,17 +82,11 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @DebugLog
     private boolean checkFields(final String _email, final String _pass, final String _repeatPass) {
         if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_pass) || TextUtils.isEmpty(_repeatPass)) {
-            mDialogShower.showGenericDialog(getChildFragmentManager(),
-                    new IDialogShower.Data()
-                            .setTitle("Warning")
-                            .setMessage(getString(R.string.register_fields_warning_message)));
+            showErrorMessage(IErrorManager.Type.WARNING, "Register", getString(R.string.warning_empty_fields));
             return true;
         }
         if (!_pass.equals(_repeatPass)) {
-            mDialogShower.showGenericDialog(getChildFragmentManager(),
-                    new IDialogShower.Data()
-                            .setTitle("Warning")
-                            .setMessage(getString(R.string.register_pass_warning_message)));
+            showErrorMessage(IErrorManager.Type.WARNING, "Register", getString(R.string.warning_passwords_message));
             return true;
         }
         return false;
@@ -109,9 +103,6 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @Override
     public void failedRegister(final Exception _e) {
         removeLoader();
-        mDialogShower.showGenericDialog(getChildFragmentManager(),
-                new IDialogShower.Data()
-                        .setTitle("Error")
-                        .setMessage(_e.getMessage()));
+        showErrorMessage(IErrorManager.Type.ERROR, "Register", _e.getMessage());
     }
 }

@@ -3,6 +3,7 @@ package r4mstein.ua.thenxworkouts.root.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -14,6 +15,7 @@ import butterknife.Unbinder;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.root.ObjectGraph;
 import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 27.02.2018.
@@ -29,6 +31,8 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
     protected Unbinder mUnbinder;
     @Inject
     protected IDialogShower mDialogShower;
+    @Inject
+    protected IErrorManager mErrorManager;
 
     protected abstract void init();
 
@@ -47,7 +51,7 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
 
     @CallSuper
     @Override
-    public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
+    public void onViewCreated(@NonNull final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
         //noinspection unchecked
         mModel.setPresenter(this);
@@ -69,6 +73,14 @@ public abstract class BaseFragment<N extends INavigator, M extends IModel> exten
     @DebugLog
     protected void removeLoader() {
         mDialogShower.removeLoader(getChildFragmentManager());
+    }
+
+    @DebugLog
+    protected void showErrorMessage(final IErrorManager.Type _type, final String _operationName, final String _message) {
+        mDialogShower.showGenericDialog(getChildFragmentManager(),
+                new IDialogShower.Data()
+                        .setTitle(mErrorManager.getTitle(_type))
+                        .setMessage(mErrorManager.getErrorMessage(_operationName, _message)));
     }
 
     /**

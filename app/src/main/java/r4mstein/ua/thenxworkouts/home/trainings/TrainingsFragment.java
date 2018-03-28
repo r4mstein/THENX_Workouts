@@ -1,6 +1,7 @@
 package r4mstein.ua.thenxworkouts.home.trainings;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +21,7 @@ import r4mstein.ua.thenxworkouts.home.trainings.adapter.ClickListener;
 import r4mstein.ua.thenxworkouts.home.trainings.adapter.TrainingsAdapter;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
-import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 10.03.2018.
@@ -68,7 +69,7 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
 
     @DebugLog
     @Override
-    public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
+    public void onViewCreated(@NonNull final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
         showLoader();
         mModel.loadData(mLevel, "namesOfTrainings");
@@ -108,11 +109,7 @@ public final class TrainingsFragment extends BaseFragment<IHomeNavigator, ITrain
     @Override
     public void loadDataFailed(final Exception _e) {
         removeLoader();
-        Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
-        mDialogShower.showGenericDialog(getChildFragmentManager(),
-                new IDialogShower.Data()
-                        .setTitle("Error")
-                        .setMessage(_e.getMessage()));
+        showErrorMessage(IErrorManager.Type.ERROR, getString(R.string.error_load_data), _e.getMessage());
     }
 
     private void setupToolbar() {
