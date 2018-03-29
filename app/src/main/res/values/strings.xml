@@ -8,7 +8,7 @@
     <string name="register_bottom_text">Have an account? Login</string>
 
     <string name="login_btn_text">Login</string>
-    <string name="login_bottom_text">Do not have an account? Register</string>
+    <string name="login_bottom_text">New user? Register</string>
 
     <string name="warning_empty_fields">All fields must be fill</string>
     <string name="warning_passwords_message">Fields password and repeat password must be the same</string>
