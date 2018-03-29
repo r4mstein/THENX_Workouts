@@ -1,13 +1,13 @@
 package r4mstein.ua.thenxworkouts.home.workout;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ import r4mstein.ua.thenxworkouts.home.navigator.IHomeNavigator;
 import r4mstein.ua.thenxworkouts.home.workout.adapter.WorkoutAdapter;
 import r4mstein.ua.thenxworkouts.root.base.BaseDataHolder;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 13.03.2018.
@@ -61,12 +62,15 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
         return view;
     }
 
+    @DebugLog
     @Override
-    public void onViewCreated(final View _view, @Nullable final Bundle _savedInstanceState) {
+    public void onViewCreated(@NonNull final View _view, @Nullable final Bundle _savedInstanceState) {
         super.onViewCreated(_view, _savedInstanceState);
+        showLoader();
         mModel.loadData(mData);
     }
 
+    @DebugLog
     private void setupUi() {
         mNavigator.setToolbarTitle(mData.getWorkoutName());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -74,13 +78,17 @@ public final class WorkoutFragment extends BaseFragment<IHomeNavigator, IWorkout
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    @DebugLog
     @Override
-    public void dataLoaded(List<BaseDataHolder> _list) {
+    public void dataLoaded(final List<BaseDataHolder> _list) {
         if (_list != null) mAdapter.setData(_list);
+        removeLoader();
     }
 
+    @DebugLog
     @Override
-    public void loadDataFailed(Exception _e) {
-        Toast.makeText(getContext(), _e.getMessage(), Toast.LENGTH_SHORT).show();
+    public void loadDataFailed(final Exception _e) {
+        removeLoader();
+        showErrorMessage(IErrorManager.Type.ERROR, getString(R.string.error_load_data), _e.getMessage());
     }
 }

@@ -1,6 +1,5 @@
 package r4mstein.ua.thenxworkouts.auth.register;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -18,6 +17,7 @@ import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthNavigator;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -61,7 +61,10 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @OnClick(R.id.btnRegister_AR)
     final void onClickRegister() {
         final AuthData data = createData();
-        if (data != null) mModel.register(data);
+        if (data != null) {
+            showLoader();
+            mModel.register(data);
+        }
     }
 
     @DebugLog
@@ -79,34 +82,27 @@ public final class RegisterFragment extends BaseFragment<IAuthNavigator, IRegist
     @DebugLog
     private boolean checkFields(final String _email, final String _pass, final String _repeatPass) {
         if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_pass) || TextUtils.isEmpty(_repeatPass)) {
-            showDialog(getString(R.string.register_fields_warning_message));
+            showErrorMessage(IErrorManager.Type.WARNING, "Register", getString(R.string.warning_empty_fields));
             return true;
         }
         if (!_pass.equals(_repeatPass)) {
-            showDialog(getString(R.string.register_pass_warning_message));
+            showErrorMessage(IErrorManager.Type.WARNING, "Register", getString(R.string.warning_passwords_message));
             return true;
         }
         return false;
     }
 
-    private void showDialog(final String _message) {
-        // TODO: 01.03.2018
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Warning")
-                .setMessage(_message)
-                .setPositiveButton("Ok", (dialog, which) -> dialog.dismiss())
-                .show();
-    }
-
     @DebugLog
     @Override
     public void registered() {
+        removeLoader();
         mNavigator.openHome();
     }
 
     @DebugLog
     @Override
     public void failedRegister(final Exception _e) {
-        showDialog(_e.getMessage());
+        removeLoader();
+        showErrorMessage(IErrorManager.Type.ERROR, "Register", _e.getMessage());
     }
 }

@@ -2,7 +2,6 @@ package r4mstein.ua.thenxworkouts.splash;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -15,6 +14,7 @@ import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
+import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
 /**
@@ -23,6 +23,8 @@ import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
 public final class SplashActivity extends BaseActivity<ISplashNavigator, ISplashContract.Model>
         implements ISplashContract.Presenter {
+
+    private static final int CODE_FINISH = 100;
 
     @BindView(R.id.ivLogo_AS)
     ImageView ivLogo;
@@ -62,14 +64,20 @@ public final class SplashActivity extends BaseActivity<ISplashNavigator, ISplash
                 finish();
             }, 200);
         } else {
-            // TODO: 27.02.2018
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Error")
-                    .setMessage("No internet connection")
-                    .setPositiveButton("Ok", (dialog, which) -> finish())
-                    .setCancelable(false)
-                    .show();
+            mDialogShower.showGenericDialog(getSupportFragmentManager(),
+                    new IDialogShower.Data()
+                            .setTitle("Error")
+                            .setMessage(getString(R.string.no_internet))
+                            .setCode(CODE_FINISH)
+                            .setCancelable(false));
         }
+    }
+
+    @DebugLog
+    @Override
+    public void onDialogClick(final IDialogShower.DialogButton _button, final int _code) {
+        super.onDialogClick(_button, _code);
+        if (_code == CODE_FINISH) finish();
     }
 
     private void startAnimation() {

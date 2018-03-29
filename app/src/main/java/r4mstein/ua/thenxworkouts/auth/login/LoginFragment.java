@@ -1,6 +1,5 @@
 package r4mstein.ua.thenxworkouts.auth.login;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -18,6 +17,7 @@ import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.auth.AuthData;
 import r4mstein.ua.thenxworkouts.auth.navigator.IAuthNavigator;
 import r4mstein.ua.thenxworkouts.root.base.BaseFragment;
+import r4mstein.ua.thenxworkouts.root.error.IErrorManager;
 
 /**
  * Created by Alex Shtain on 01.03.2018.
@@ -59,26 +59,20 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @OnClick(R.id.btnLogin_AL)
     final void onClickLogin() {
         final AuthData authData = createData(etEmail.getText().toString(), etPassword.getText().toString());
-        if (authData != null) mModel.login(authData);
+        if (authData != null) {
+            showLoader();
+            mModel.login(authData);
+        }
     }
 
     @DebugLog
     private AuthData createData(final String _email, final String _pass) {
         if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_pass)) {
-            showDialog(getString(R.string.register_fields_warning_message));
+            showErrorMessage(IErrorManager.Type.WARNING, "Login", getString(R.string.warning_empty_fields));
             return null;
         } else {
             return new AuthData(_email, _pass);
         }
-    }
-
-    private void showDialog(final String _message) {
-        // TODO: 01.03.2018
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Warning")
-                .setMessage(_message)
-                .setPositiveButton("Ok", (dialog, which) -> dialog.dismiss())
-                .show();
     }
 
     @DebugLog
@@ -90,12 +84,14 @@ public final class LoginFragment extends BaseFragment<IAuthNavigator, ILoginCont
     @DebugLog
     @Override
     public void loginSuccess() {
+        removeLoader();
         mNavigator.openHome();
     }
 
     @DebugLog
     @Override
     public void loginFailed(final Exception _e) {
-        showDialog(_e.getMessage());
+        removeLoader();
+        showErrorMessage(IErrorManager.Type.ERROR, "Login", _e.getMessage());
     }
 }
