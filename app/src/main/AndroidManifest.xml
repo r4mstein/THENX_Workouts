@@ -27,7 +27,8 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".auth.navigator.AuthActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AuthStyle"/>
     </application>
 
 </manifest>
