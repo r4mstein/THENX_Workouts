@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
+import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.root.ObjectGraph;
 import r4mstein.ua.thenxworkouts.root.dialog_shower.IDialogShower;
 
@@ -66,9 +67,11 @@ public abstract class BaseActivity<N extends INavigator, M extends IModel> exten
                 .commit();
     }
 
-    protected final void replaceFragment(final int _containerId, final @NonNull Fragment _fragment) {
+    protected final void replaceFragment(final int _containerId, final @NonNull Fragment _fragment,
+                                         final int _animIn, final int _animOut) {
         getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(_animIn, _animOut)
                 .replace(_containerId, _fragment)
                 .commit();
     }
@@ -76,6 +79,7 @@ public abstract class BaseActivity<N extends INavigator, M extends IModel> exten
     protected final void replaceFragmentAndAddToBackStack(final int _containerId, final @NonNull Fragment _fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                 .replace(_containerId, _fragment)
                 .addToBackStack(null)
                 .commit();
