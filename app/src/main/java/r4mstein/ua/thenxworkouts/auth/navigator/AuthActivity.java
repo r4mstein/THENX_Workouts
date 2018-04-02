@@ -45,13 +45,13 @@ public final class AuthActivity extends BaseActivity<IAuthNavigator, IAuthContra
     @DebugLog
     @Override
     public final void showRegister() {
-        replaceFragment(getRootContainer(), RegisterFragment.newInstance());
+        replaceFragment(getRootContainer(), RegisterFragment.newInstance(), R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @DebugLog
     @Override
     public final void showLogin() {
-        replaceFragment(getRootContainer(), LoginFragment.newInstance());
+        replaceFragment(getRootContainer(), LoginFragment.newInstance(), R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @DebugLog
