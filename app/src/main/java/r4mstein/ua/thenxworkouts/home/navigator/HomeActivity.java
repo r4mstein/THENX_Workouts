@@ -15,7 +15,7 @@ import r4mstein.ua.thenxworkouts.home.workout.WorkoutFragment;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
-public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Model>
+public final class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Model>
         implements IHomeContract.Presenter, IHomeNavigator {
 
     @BindView(R.id.tHomeToolbar_AH)
@@ -41,16 +41,16 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
         showHomeFragment();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @DebugLog
     private void setupUi() {
         setToolbarTitle(getString(R.string.app_name));
-//        mToolbar.setNavigationIcon(R.drawable.ic_back); todo
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         mToolbar.setNavigationOnClickListener(v -> {
             getSupportFragmentManager().popBackStack();
             if (getSupportFragmentManager().getBackStackEntryCount() == 1) setToolbarTitle(getString(R.string.app_name));
         });
-        //noinspection ConstantConditions
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportFragmentManager().addOnBackStackChangedListener(() ->
                 getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount() > 0)
