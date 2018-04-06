@@ -9,12 +9,13 @@ import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import r4mstein.ua.thenxworkouts.R;
 import r4mstein.ua.thenxworkouts.home.WorkoutData;
+import r4mstein.ua.thenxworkouts.home.home_fragment.HomeFragment;
 import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
 import r4mstein.ua.thenxworkouts.home.workout.WorkoutFragment;
 import r4mstein.ua.thenxworkouts.root.base.BaseActivity;
 import r4mstein.ua.thenxworkouts.root.navigator.IRootNavigator;
 
-public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Model>
+public final class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Model>
         implements IHomeContract.Presenter, IHomeNavigator {
 
     @BindView(R.id.tHomeToolbar_AH)
@@ -37,19 +38,19 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
         setContentView(R.layout.activity_home);
         bindView(this);
         setupUi();
-        showTrainigsFragment("beginer");
+        showHomeFragment();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @DebugLog
     private void setupUi() {
         setToolbarTitle(getString(R.string.app_name));
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         mToolbar.setNavigationOnClickListener(v -> {
             getSupportFragmentManager().popBackStack();
             if (getSupportFragmentManager().getBackStackEntryCount() == 1) setToolbarTitle(getString(R.string.app_name));
         });
-        //noinspection ConstantConditions
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportFragmentManager().addOnBackStackChangedListener(() ->
                 getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount() > 0)
@@ -72,13 +73,19 @@ public class HomeActivity extends BaseActivity<IHomeNavigator, IHomeContract.Mod
 
     @DebugLog
     @Override
-    public void showTrainigsFragment(final String _level) {
+    public final void showHomeFragment() {
+        replaceFragment(getRootContainer(), HomeFragment.newInstance(), R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @DebugLog
+    @Override
+    public final void showTrainigsFragment(final String _level) {
         replaceFragmentAndAddToBackStack(getRootContainer(), TrainingsFragment.newInstance(_level));
     }
 
     @DebugLog
     @Override
-    public void showWorkoutFragment(final WorkoutData _data) {
+    public final void showWorkoutFragment(final WorkoutData _data) {
         replaceFragmentAndAddToBackStack(getRootContainer(), WorkoutFragment.newInstance(_data));
     }
 

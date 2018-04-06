@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlRootContainer_HF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_HF"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        tools:background="@color/colorPrimary"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tlDots_HF"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_below="@id/vp_HF"
+        app:tabBackground="@drawable/dot_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="7dp"
+        app:tabPaddingStart="7dp"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvMainContainer_HF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnLogout_HF"
+        android:layout_below="@id/tlDots_HF"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvText_HF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/firasans_regular"
+            android:text="@string/home_beginner_explanation"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            />
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnLogout_HF"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/bg_btn_login"
+        android:fontFamily="@font/firasans_black"
+        android:text="@string/home_btn_text"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        />
+
+</RelativeLayout>

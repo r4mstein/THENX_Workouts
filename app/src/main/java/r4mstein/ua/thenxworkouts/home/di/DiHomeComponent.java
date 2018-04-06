@@ -1,6 +1,8 @@
 package r4mstein.ua.thenxworkouts.home.di;
 
 import dagger.Component;
+import r4mstein.ua.thenxworkouts.home.home_fragment.HomeFragment;
+import r4mstein.ua.thenxworkouts.home.home_fragment.di.DiHomeFragmentModule;
 import r4mstein.ua.thenxworkouts.home.navigator.HomeActivity;
 import r4mstein.ua.thenxworkouts.home.trainings.TrainingsFragment;
 import r4mstein.ua.thenxworkouts.home.trainings.di.DiTrainingsModule;
@@ -15,11 +17,13 @@ import r4mstein.ua.thenxworkouts.root.di.DiRootComponent;
 @Component(modules = {
         DiHomeModule.class,
         DiTrainingsModule.class,
-        DiWorkoutModule.class
+        DiWorkoutModule.class,
+        DiHomeFragmentModule.class
 },
         dependencies = DiRootComponent.class)
 public interface DiHomeComponent {
     void inject(HomeActivity _activity);
     void inject(TrainingsFragment _fragment);
     void inject(WorkoutFragment _fragment);
+    void inject(HomeFragment _fragment);
 }
