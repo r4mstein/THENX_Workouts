@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBackground_AR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        />
+
+    <EditText
+        android:id="@+id/etEmail_AR"
+        style="@style/AuthEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/etPassword_AR"
+        android:layout_marginBottom="20dp"
+        android:drawableStart="@drawable/ic_profile"
+        android:hint="@string/register_hint_email"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/etPassword_AR"
+        style="@style/AuthEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/etRepeatPassword_AR"
+        android:layout_marginBottom="20dp"
+        android:drawableStart="@drawable/ic_lock"
+        android:hint="@string/register_hint_password"
+        android:inputType="textPassword"
+        />
+
+    <EditText
+        android:id="@+id/etRepeatPassword_AR"
+        style="@style/AuthEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnRegister_AR"
+        android:layout_marginBottom="80dp"
+        android:drawableStart="@drawable/ic_lock"
+        android:hint="@string/register_hint_repeat_password"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/btnRegister_AR"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/tvLogin_AR"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/bg_btn_login"
+        android:fontFamily="@font/firasans_black"
+        android:text="@string/register_btn_text"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/tvLogin_AR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/firasans_regular"
+        android:text="@string/register_bottom_text"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        />
+
+</RelativeLayout>

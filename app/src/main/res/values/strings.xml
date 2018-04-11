@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">THENX Workouts</string>
+
+    <string name="register_hint_email">Enter email</string>
+    <string name="register_hint_password">Enter password</string>
+    <string name="register_hint_repeat_password">Repeat password</string>
+    <string name="register_btn_text">Register</string>
+    <string name="register_bottom_text">Have an account? Login</string>
+
+    <string name="login_btn_text">Login</string>
+    <string name="login_bottom_text">New user? Register</string>
+
+    <string name="warning_empty_fields">All fields must be fill</string>
+    <string name="warning_passwords_message">Fields password and repeat password must be the same</string>
+    <string name="error_load_data">Loading data</string>
+
+    <string name="workout_description">The repetitions and time in the workout are aims. Rest 1 – 2 minutes between rounds and 30 seconds between exercises. Maintain ideal shape and observe the safety engineering.</string>
+
+    <string name="max_time">Time: MAX</string>
+    <string name="max_repetition">Repetition: MAX</string>
+    <string name="time">Time:</string>
+    <string name="repetition">Repetition:</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="no_internet">No internet connection</string>
+
+    <string name="dialog_title_info">Info</string>
+    <string name="dialog_title_warning">Warning</string>
+    <string name="dialog_title_error">Error</string>
+
+    <string name="home_btn_text">Logout</string>
+    <string name="home_level">level</string>
+    <string name="home_beginner_level">Beginner</string>
+    <string name="home_middle_level">Middle</string>
+    <string name="home_advanced_level">Advanced</string>
+    <string name="home_beginner_explanation">
+        This program is aimed at obtaining calisthenics skills and a good basis for increasing fitness opportunities.
+    </string>
+    <string name="home_middle_explanation">
+        This is a more complex program that includes advanced variations of exercises. Challenges are placed throughout the program to help you achieve fitness goals.
+    </string>
+    <string name="home_advanced_explanation">
+        This program is intended for those who are already strong enough in calisthenics and want to raise their skills and body to the next level. This program contains a detailed training for the whole body, available only to the most elite athlete calisthenics.
+    </string>
 </resources>

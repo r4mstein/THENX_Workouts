@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/tvPart_WII"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/firasans_regular"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="24sp"
+        tools:text="Part 1, Day 1"
+        />
+
+    <TextView
+        android:id="@+id/tvDescription_WII"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPart_WII"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/firasans_regular"
+        android:text="@string/workout_description"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>
